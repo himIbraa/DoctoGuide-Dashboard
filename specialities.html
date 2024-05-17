@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="icon" href="assets/img/iconOnly.png">
+    <title>Specialities</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <!-- Feathericon CSS -->
+    <link rel="stylesheet" href="assets/css/feathericon.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        <div class="header">
+            <!-- Logo -->
+            <div class="header-left">
+                <a href="#" class="logo"><img src="assets/img/txtOnly.png" alt=""></a>
+                <a href="#" class="logo logo-small"><img src="assets/img/iconOnly.png" alt=""></a>
+            </div>
+            <!-- /Logo -->
+            
+            <a href="javascript:void(0);" id="toggle_btn">
+                <i class="fe fe-text-align-left"></i>
+            </a>
+            
+            <!-- Mobile Menu Toggle -->
+            <a class="mobile_btn" id="mobile_btn">
+                <i class="fa fa-bars"></i>
+            </a>
+            <!-- /Mobile Menu Toggle -->
+            
+            <!-- Header Right Menu -->
+            <ul class="nav user-menu">
+                
+                <!-- Notifications -->
+					<li class="nav-item dropdown noti-dropdown">
+						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+							<i class="fe fe-bell"></i> <span class="badge badge-pill">
+							</span>
+						</a>
+						<div class="dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span class="notification-title">Notifications</span>
+								<a href="javascript:void(0)" class="clear-noti"> Mark as read </a>
+							</div>
+							<div class="noti-content">
+								<ul class="notification-list" id="notifications"></ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="consultation-list.html">View all Notifications</a>
+							</div>
+						</div>
+					</li>
+					<!-- /Notifications -->
+
+                <!-- User Menu -->
+                <li class="nav-item dropdown has-arrow" id="profileHeader"> 
+                </li>
+                <!-- /User Menu -->
+            </ul>
+            <!-- /Header Right Menu -->
+        </div>
+        <!-- /Header -->
+        
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">
+                            <span>Main</span>
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a href="consultation-list.html"><i class="fe fe-layout"></i> <span>Consultations</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="specialities.html"><i class="fe fe-users"></i> <span>Specialities</span></a>
+                        </li>
+                        <li>
+                            <a href="Doctor Request.html"><i class="fe fe-star-o"></i> <span>Doctor Request</span></a>
+                        </li>
+                        <li>
+                            <a href="doctor-list.html"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
+                        </li>
+                        <li>
+                            <a href="patient-list.html"><i class="fe fe-user"></i> <span>Patients</span></a>
+                        </li>
+                        <li>
+                            <a href="profile.html"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Sidebar -->
+
+        <!-- Page Wrapper -->
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-7 col-auto">
+                            <h3 class="page-title">Specialities</h3>
+                        </div>
+                        <div class="col-sm-5 col">
+                            <a href="#Add_Specialities_details" data-toggle="modal" class="btn btn-primary float-right mt-2">Add</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Page Header -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="top-nav-search">
+                                    <form id="searchFormSpeciality">
+                                        <input type="text" id="searchInputSpeciality" class="form-control" id="searchInputSpeciality" placeholder="Search here">
+                                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="datatable table table-hover table-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Specialities</th>
+                                                <th class="text-right">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="special"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="main-footer">
+                <strong>
+                    Copyright © 2023-2024 <a href="">Group 5</a>.
+                </strong>
+                All rights reserved.
+            </footer>
+        </div>
+        <!-- /Page Wrapper -->
+
+        <!-- Add Modal -->
+        <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Specialities</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="add_speciality_form">
+                            <div class="row form-row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Specialities</label>
+                                        <input type="text" class="form-control" id="add_speciality_name">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Specialities ID</label>
+                                        <input type="text" class="form-control" id="add_speciality_id">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Image</label>
+                                        <input type="file" class="form-control" id="add_speciality_image">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Add Modal -->
+
+        <!-- Edit Details Modal -->
+        <div class="modal fade" id="edit_specialities_details" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Specialities</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="edit_speciality_form">
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Specialities</label>
+                                        <input type="text" class="form-control" id="edit_speciality_name">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Image</label>
+                                        <input type="file" class="form-control" id="edit_speciality_image">
+                                        <img id="edit_speciality_image_preview" alt="Preview" width="50">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Edit Details Modal -->
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-content p-2">
+                            <h4 class="modal-title">Delete</h4>
+                            <p class="mb-4">Are you sure you want to delete?</p>
+                            <button type="button" class="btn btn-primary" id="confirm_delete_speciality">Delete</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Delete Modal -->
+    </div>
+    <!-- /Main Wrapper -->
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+		
+    <!-- Bootstrap Core JS -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    
+    <!-- Slimscroll JS -->
+    <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script  src="assets/js/script.js"></script>  
+
+    <!-- Backend JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="specialities.js"></script>
+    <script src="notification.js"></script>
+
+
+    		<!-- jquery  -->
+
+		<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Function to fetch and display specialities
+    getSpeciality();
+
+    // Instantaneous search functionality
+    $('#searchInputSpeciality').on('input', function() {
+        const filter = $(this).val().toUpperCase();
+        console.log('Search filter:', filter);
+        $('#special tr').each(function() {
+            const td = $(this).find('td').eq(1); // Adjust index if you want to search by a different column
+            console.log('Checking row with second cell text:', td.text());
+            if (td.length) {
+                const textValue = td.text();
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            }
+        });
+    });
+
+    // Other functionalities (e.g., pagination, button listeners)
+    // Assuming getSpeciality is defined elsewhere
+});
+</script>
+
+</body>
+</html>

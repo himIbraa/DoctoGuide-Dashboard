@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <title>Doctor Request</title>
+		
+		<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/iconOnly.png">
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+		
+		<!-- Feathericon CSS -->
+        <link rel="stylesheet" href="assets/css/feathericon.min.css">
+
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+		
+    </head>
+    <body>
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper">
+		<!-- Header -->
+		<div class="header">
+			
+			<!-- Logo -->
+			<div class="header-left">
+				<a href="#" class="logo"><img src="assets/img/txtOnly.png" alt=""></a>
+				<a href="#" class="logo logo-small"><img src="assets/img/iconOnly.png" alt=""></a>
+			</div>
+			<!-- /Logo -->
+			
+			<a href="javascript:void(0);" id="toggle_btn">
+				<i class="fe fe-text-align-left"></i>
+			</a>
+			
+			<!-- Mobile Menu Toggle -->
+			<a class="mobile_btn" id="mobile_btn">
+				<i class="fa fa-bars"></i>
+			</a>
+			<!-- /Mobile Menu Toggle -->
+			
+			<!-- Header Right Menu -->
+			<ul class="nav user-menu">
+
+				<!-- Notifications -->
+				<li class="nav-item dropdown noti-dropdown">
+					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+						<i class="fe fe-bell"></i> <span class="badge badge-pill">
+						</span>
+					</a>
+					<div class="dropdown-menu notifications">
+						<div class="topnav-dropdown-header">
+							<span class="notification-title">Notifications</span>
+							<a href="javascript:void(0)" class="clear-noti"> Mark as read </a>
+						</div>
+						<div class="noti-content">
+							<ul class="notification-list" id="notifications"></ul>
+						</div>
+						<div class="topnav-dropdown-footer">
+							<a href="consultation-list.html">View all Notifications</a>
+						</div>
+					</div>
+				</li>
+				<!-- /Notifications -->
+
+				<!-- User Menu -->
+                <li class="nav-item dropdown has-arrow" id="profileHeader"> 
+                </li>
+				<!-- /User Menu -->
+				
+			</ul>
+			<!-- /Header Right Menu -->
+			
+		</div>
+		<!-- /Header -->
+			
+			<!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+						<ul>
+							<li class="menu-title"> 
+								<span>Main</span>
+							</li>
+							<li> 
+								<a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+							</li>
+							<li> 
+								<a href="consultation-list.html"><i class="fe fe-layout"></i> <span>Consultations</span></a>
+							</li>
+							<li> 
+								<a href="specialities.html"><i class="fe fe-users"></i> <span>Specialities</span></a>
+							</li>
+							<li class="active"> 
+								<a href="Doctor Request.html"><i class="fe fe-star-o"></i> <span>Doctor Request</span></a>
+							</li>
+							<li> 
+								<a href="doctor-list.html"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
+							</li>
+							<li> 
+								<a href="patient-list.html"><i class="fe fe-user"></i> <span>Patients</span></a>
+							</li>
+							<li>
+								<a href="profile.html"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
+							</li>
+						</ul>
+					</div>
+                </div>
+            </div>
+			<!-- /Sidebar -->
+			
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="page-title">Doctor Request</h3>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="top-nav-search">
+										<form>
+											<input type="text" id="searchInputDoctor" class="form-control" placeholder="Search here">
+											<button class="btn" type="submit"><i class="fa fa-search"></i></button>
+										</form>
+									</div>
+									<div class="table-responsive">
+										<table class="datatable table table-hover table-center mb-0">
+											<thead>
+												<tr>
+													<th>Doctor Name</th>
+													<th>Email</th>
+													<th>Phone</th>
+													<th>speciality</th>
+													<th>Diploma</th>
+													<th class="text-right">Actions</th>
+												</tr>
+											</thead>
+											<tbody id="doctor">
+											</tbody>
+										</table>
+									</div>
+									<nav aria-label="Page navigation">
+										<ul class="pagination justify-content-center mt-4" id="pagination"></ul>
+									</nav>
+								</div>
+							</div>
+						</div>			
+					</div>
+					
+				</div>	
+				<footer class="main-footer">
+					<strong>
+					  Copyright © 2023-2024 <a href="">Group 5</a>.
+					</strong>
+					All rights reserved.
+				  </footer>		
+			</div>
+			<!-- /Page Wrapper -->
+			
+        </div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
+		
+		<!-- Bootstrap Core JS -->
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+		
+		<!-- Slimscroll JS -->
+        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		
+		<!-- Custom JS -->
+		<script  src="assets/js/script.js"></script>
+		
+		<!-- backend JS  -->
+		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+		<script src="doctorRequest.js"></script>
+		<script src="notification.js"></script>
+
+		<!-- jquery  -->
+
+		<!-- Add the jQuery library if it's not already included -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Function to fetch and display doctors
+    getDoctor(currentPage);
+
+    // Instantaneous search functionality
+    $('#searchInputDoctor').on('input', function() {
+        const filter = $(this).val().toUpperCase();
+        $('#doctor tr').each(function() {
+            const td = $(this).find('td').first();
+            if (td.length) {
+                const textValue = td.text();
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            }
+        });
+    });
+
+    // Other functionalities (e.g., pagination, button listeners)
+    // Assuming getDoctor is defined elsewhere
+});
+</script>
+
+    </body>
+</html>
