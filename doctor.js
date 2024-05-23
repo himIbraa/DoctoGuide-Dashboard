@@ -61,7 +61,7 @@ const getDoctor = async (page = 1) => {
                     </td>
                     <td>${res.data[i].speciality}</td>
                     <td>${date} <br><small>${time}</small></td>
-                    <td>${res.data[i].fee}</td>
+                    <td>${res.data[i].phone}</td>
                     <td>
                     <div class="status-toggle">
                         <input type="checkbox" id="status_${i}" class="check" ${check} disabled>

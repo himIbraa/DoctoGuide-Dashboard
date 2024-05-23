@@ -24,13 +24,20 @@ document.addEventListener('DOMContentLoaded', function () {
     checkAuthentication();
 });
 
-const itemsPerPage = 10;
+const itemsPerPage = 10; // Default to 10 rows per page
 let currentPage = 1;
+let totalItems = 0;
 let consultationData = [];
 
-const getConsultation = async () => {
-    const res = await database.from("consultationPrice").select("*");
+const getConsultation = async (page = 1) => {
+    const offset = (page - 1) * itemsPerPage;
+    const res = await database
+        .from("consultationPrice")
+        .select("*", { count: "exact" })
+        .range(offset, offset + itemsPerPage - 1);
+    
     consultationData = res.data || [];
+    totalItems = res.count;
     renderConsultationList();
     renderPaginationControls();
 }
@@ -75,25 +82,54 @@ const renderConsultationList = async () => {
 
 const renderPaginationControls = () => {
     const pagination = document.getElementById("pagination");
-    const totalPages = Math.ceil(consultationData.length / itemsPerPage);
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
     let paginationHTML = "";
 
+    if (currentPage > 1) {
+        paginationHTML += `<li class="page-item"><a class="page-link" href="#" data-page="${currentPage - 1}">Previous</a></li>`;
+    } else {
+        paginationHTML += `<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>`;
+    }
+
     for (let i = 1; i <= totalPages; i++) {
-        paginationHTML += `
-            <li class="page-item ${i === currentPage ? 'active' : ''}">
-                <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
-            </li>
-        `;
+        if (i === currentPage) {
+            paginationHTML += `<li class="page-item active"><a class="page-link" href="#">${i}</a></li>`;
+        } else {
+            paginationHTML += `<li class="page-item"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+        }
+    }
+
+    if (currentPage < totalPages) {
+        paginationHTML += `<li class="page-item"><a class="page-link" href="#" data-page="${currentPage + 1}">Next</a></li>`;
+    } else {
+        paginationHTML += `<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>`;
     }
 
     pagination.innerHTML = paginationHTML;
+
+    Array.from(document.querySelectorAll("#pagination a")).forEach((element) => {
+        element.addEventListener("click", (event) => {
+            event.preventDefault();
+            const targetPage = parseInt(event.target.getAttribute("data-page"));
+            if (!isNaN(targetPage)) {
+                currentPage = targetPage;
+                getConsultation(currentPage);
+            }
+        });
+    });
 }
 
-const changePage = (page) => {
-    currentPage = page;
-    renderConsultationList();
-    renderPaginationControls();
+const updateRowsPerPage = () => {
+    const rowsPerPageSelector = document.getElementById("rowsPerPage");
+    itemsPerPage = parseInt(rowsPerPageSelector.value);
+    currentPage = 1; // Reset to the first page
+    getConsultation(currentPage);
 }
+
+// Ensure the DOM content is fully loaded before setting up event listeners
+document.addEventListener('DOMContentLoaded', function () {
+    getConsultation(currentPage);
+});
 
 const searchConsultation = () => {
     const searchInput = document.getElementById("searchInputConsultation");

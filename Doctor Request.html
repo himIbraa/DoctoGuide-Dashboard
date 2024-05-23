@@ -173,34 +173,56 @@
 				  </footer>		
 			</div>
 			<!-- /Page Wrapper -->
+
+			<!-- Delete Modal -->
+			<div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Delete</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-content p-2">
+								<h4 class="modal-title">Delete</h4>
+								<p class="mb-4">Are you sure you want to delete?</p>
+								<button type="button" class="btn btn-primary" id="confirm_delete_speciality">Delete</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Delete Modal -->
 			
         </div>
 		<!-- /Main Wrapper -->
-		
 		<!-- jQuery -->
-        <script src="assets/js/jquery-3.2.1.min.js"></script>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 		<!-- Bootstrap Core JS -->
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-		
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+	
 		<!-- Slimscroll JS -->
-        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-		
+		<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	
 		<!-- Custom JS -->
-		<script  src="assets/js/script.js"></script>
-		
-		<!-- backend JS  -->
+		<script src="assets/js/script.js"></script>
+	
+		<!-- backend JS -->
 		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 		<script src="doctorRequest.js"></script>
-		<script src="notification.js"></script>
+		
 
 		<!-- jquery  -->
 
 		<!-- Add the jQuery library if it's not already included -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script>
+<script> 
 $(document).ready(function() {
     // Function to fetch and display doctors
     getDoctor(currentPage);

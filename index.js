@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const getDoctorCount = async () => {
     try {
-        const res = await database.from("doctor").select("id_doctor");
+        const res = await database.from("doctor").select("id_doctor").eq("accepted", true);
 
         if (res && res.data && res.data.length > 0) {
             const doctorCount = res.data.length;

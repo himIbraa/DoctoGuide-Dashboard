@@ -66,6 +66,9 @@ const getDoctor = async (page = 1) => {
                     <div class="actions">
                         <a class="btn btn-sm bg-success-light edit-speciality" data-id="${res.data[i].id_doctor}" data-toggle="modal" href="">
                             <i class="fe fe-pencil"></i> Accept
+                        </a>
+                        <a class="btn btn-sm bg-danger-light delete-speciality" data-id="${res.data[i].id_doctor}" data-toggle="modal" href="#delete_modal">
+                                <i class="fe fe-trash"></i> Delete
                         </a>   
                     </div>
                 </td>
@@ -73,7 +76,8 @@ const getDoctor = async (page = 1) => {
         }
         doctor.innerHTML = dr;
         updatePagination(page);
-        setupAcceptButtonListener();
+        setupAcceptButtonListener(); 
+        setupDeleteButtonListener();
     }
 }
 
@@ -200,8 +204,113 @@ const acceptDoctor = async (doctorId) => {
 // Ensure the DOM content is fully loaded before setting up event listeners
 document.addEventListener('DOMContentLoaded', () => {
     setupAcceptButtonListener();
+    setupDeleteButtonListener();
 });
 
+
+
+const setupDeleteButtonListener = () => {
+    const deleteButtons = document.querySelectorAll(".delete-speciality");
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            const doctorId = button.getAttribute("data-id");
+            document.getElementById("confirm_delete_speciality").setAttribute("data-id", doctorId);
+        });
+    });
+}
+
+document.getElementById("confirm_delete_speciality").addEventListener("click", async function () {
+    const doctorId = this.getAttribute("data-id");
+    await deleteDoctor(doctorId);
+});
+
+if (typeof jQuery === 'undefined') {
+    throw new Error('jQuery is not loaded');
+}
+
+$(document).ready(function () {
+    checkAuthentication();
+    getDoctor(currentPage);
+    setupAcceptButtonListener();
+    setupDeleteButtonListener();
+});
+
+const deleteDoctor = async (doctorId) => {
+    try {
+        // Delete from the consultationrequest table first
+        const { error: consultationError } = await database
+            .from("consultationrequest")
+            .delete()
+            .eq("did", doctorId);
+
+        if (consultationError) {
+            console.error('Error deleting consultations:', consultationError.message);
+            return;
+        }
+
+        // Delete from the consultationPrice table first
+        const { error: consultationPriceError } = await database
+            .from("consultationPrice")
+            .delete()
+            .eq("id_doctor", doctorId);
+
+        if (consultationPriceError) {
+            console.error('Error deleting consultationPrice:', consultationPriceError.message);
+            return;
+        }
+
+        // Delete from the notification table first
+        const { error: notificationError } = await database
+            .from("notification")
+            .delete()
+            .eq("doctor_id", doctorId);
+
+        if (notificationError) {
+            console.error('Error deleting notifications:', notificationError.message);
+            return;
+        }
+
+        // Delete from the doctor table
+        const { error: doctorError } = await database
+            .from("doctor")
+            .delete()
+            .eq("id_doctor", doctorId);
+
+        if (doctorError) {
+            console.error('Error deleting doctor:', doctorError.message);
+            return;
+        }
+        const doctorRow = document.querySelector(`tr[data-id="${doctorId}"]`);
+        if (doctorRow) {
+            doctorRow.remove();
+        }
+
+        // Update total items and pagination
+        totalItems--;
+        updatePagination(currentPage);
+
+        // Hide the delete modal using Bootstrap's modal method
+        hideModal();
+        console.log(`Doctor with id: ${doctorId} and their consultations deleted successfully`);       
+
+    } catch (err) {
+        console.error('Error deleting doctor:', err);
+    }
+}
+
+// Function to hide the modal using vanilla JavaScript
+const hideModal = () => {
+    const modal = document.getElementById('delete_modal');
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    const modalBackdrop = document.querySelector('.modal-backdrop');
+    if (modalBackdrop) {
+        modalBackdrop.parentNode.removeChild(modalBackdrop);
+    }
+}
 
 
 
